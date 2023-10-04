@@ -1,5 +1,5 @@
-const User = require('../models/users');
-const { createPasswordHash } = require('./login');
+const User = require('../models/user');
+const bycrypt = require('../utils/bcrypt');
 
 const getAll = async (req, res) => {
   const users = await User.find({});
@@ -11,30 +11,26 @@ const getById = async (req, res) => {
 
   const user = await User.findById(id);
 
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404).end();
-  }
+  user
+    ? res.json(user)
+    : res.status(404).end();
 };
 
 const create = async (req, res) => {
-  const body = req.body;
+  const { username, password } = req.body;
 
-  if (body.username.lenght < 2 || body.password.lenght < 8) {
+  if (username.length < 2 || password.length < 8) {
     return res.status(400).json({ error: 'username or password not long enough' });
   }
 
-  const passwordHash = await createPasswordHash(body.password);
+  const passwordHash = await bycrypt.createPasswordHash(password);
 
   const user = new User({
-    username: body.username,
-    name: body.name,
-    passwordHash,
+    username,
+    passwordHash
   });
 
   const savedUser = await user.save();
-
   res.status(201).json(savedUser);
 };
 

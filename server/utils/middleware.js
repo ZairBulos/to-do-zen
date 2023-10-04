@@ -1,7 +1,6 @@
+const jwt = require('./jwt');
 const logger = require('./logger');
-const config = require('./config');
-const User = require('../models/users');
-const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 const requestLogger = (req, res, next) => {
   logger.info('Method:', req.method);
@@ -41,7 +40,7 @@ const userExtractor = async (req, res, next) => {
   const token = req.token;
 
   if (token) {
-    const decodedToken = jwt.verify(token, config.JWT_SECRET);
+    const decodedToken = jwt.verifyJwt(token);
 
     const user = await User.findById(decodedToken.id);
     req.user = user._id;

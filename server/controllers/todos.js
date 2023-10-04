@@ -1,4 +1,4 @@
-const ToDo = require('../models/todos');
+const ToDo = require('../models/todo');
 
 const getAll = async (req, res) => {
   const user = req.user;
