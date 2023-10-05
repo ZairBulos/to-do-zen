@@ -2,7 +2,14 @@ const ToDo = require('../models/todo');
 
 const getAll = async (req, res) => {
   const user = req.user;
-  const todos = await ToDo.find({ user: user });
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const todos = await ToDo.find({ 
+    user: user,
+    created_at: { $gte: today, $lt: new Date(today.getTime() + 24 * 60 * 60 * 1000) }
+  });
 
   res.json(todos);
 };
@@ -63,10 +70,21 @@ const remove = async (req, res) => {
   }
 };
 
+const removeOlds = async () => {
+  const yesterday = new Date();
+  yesterday.setHours(0, 0, 0, 0);
+  yesterday.setDate(yesterday.getDate() - 1);
+  
+  await ToDo.deleteMany({ 
+    created_at: { $gte: yesterday, $lt: new Date(yesterday.getTime() + 24 * 60 * 60 * 1000) } 
+  });
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
-  remove
+  remove,
+  removeOlds
 };

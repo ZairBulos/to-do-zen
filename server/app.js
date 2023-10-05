@@ -9,6 +9,7 @@ const toDoRouter = require('./routes/todos');
 const userRouter = require('./routes/users');
 const config = require('./utils/config');
 const logger = require('./utils/logger');
+require('./utils/cron');
 
 const app = express();
 
