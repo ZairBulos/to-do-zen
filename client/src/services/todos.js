@@ -25,7 +25,7 @@ const getAll = async () => {
   }
 };
 
-const getById = async ({ id }) => {
+const getById = async (id) => {
   try {
     const response = await fetch(`${API_URL}/todos/${id}`, {
       headers: {
@@ -44,11 +44,12 @@ const getById = async ({ id }) => {
   }
 };
 
-const create = async ({ todo }) => {
+const create = async (todo) => {
   try {
     const response = await fetch(`${API_URL}/todos`, {
       method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         'Authorization': token,
       },
       body: JSON.stringify(todo)
@@ -65,11 +66,12 @@ const create = async ({ todo }) => {
   }
 };
 
-const update = async ({ todo }) => {
+const update = async (todo) => {
   try {
     const response = await fetch(`${API_URL}/todos/${todo.id}`, {
       method: 'PUT',
       headers: {
+        'Content-Type': 'application/json',
         'Authorization': token,
       },
       body: JSON.stringify(todo)
@@ -86,7 +88,29 @@ const update = async ({ todo }) => {
   }
 };
 
-const remove = async ({ id }) => {
+const patch = async (todo) => {
+  try {
+    const response = await fetch(`${API_URL}/todos/${todo.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token,
+      },
+      body: JSON.stringify({ completed: todo.completed })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Http Status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const remove = async (id) => {
   try {
     const response = await fetch(`${API_URL}/todos/${id}`, {
       method: 'DELETE',
@@ -108,6 +132,7 @@ export default {
   getById,
   create,
   update,
+  patch,
   remove,
   setToken,
 }

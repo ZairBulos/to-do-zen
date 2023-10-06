@@ -5,7 +5,15 @@ import { useTodos } from '../../hooks/useTodos';
 import TodoItem from './TodoItem';
 
 function TodoList() {
-  const { todos } = useTodos();
+  const { todos, onPatch, onRemove } = useTodos();
+
+  const handleComplete = async (todo) => {
+    await onPatch(todo);
+  };
+
+  const handleDelete = async (todo) => {
+    await onRemove(todo);
+  };
 
   return (
     <View>
@@ -14,7 +22,13 @@ function TodoList() {
       </Text>
       <FlatList
         data={todos}
-        renderItem={({ item }) => <TodoItem todo={item} />}
+        renderItem={({ item }) =>
+          <TodoItem 
+            todo={item} 
+            handleComplete={handleComplete}
+            handleDelete={handleDelete} 
+          />
+        }
         keyExtractor={item => item.id}
       />
     </View>
