@@ -56,6 +56,23 @@ const update = async (req, res) => {
   }
 };
 
+const patch = async (req, res) => {
+  const { completed } = req.body;
+  const user = req.user;
+  const id = req.params.id; 
+
+  const toDoToChange = await ToDo.findById(id);
+
+  if (toDoToChange.user.toString() === user.toString()) {
+    toDoToChange.completed = completed;
+
+    const updatedToDo = await toDoToChange.save();
+    res.json(updatedToDo);
+  } else {
+    res.status(401).end();
+  }
+};
+
 const remove = async (req, res) => {
   const id = req.params.id;
   const user = req.user;
@@ -85,6 +102,7 @@ module.exports = {
   getById,
   create,
   update,
+  patch,
   remove,
   removeOlds
 };
