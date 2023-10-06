@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { TouchableOpacity, View, Text } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import { useSignIn } from '../../hooks/useSignIn';
 
@@ -17,7 +17,7 @@ function AppBar() {
   };
 
   return (
-    <View className='p-6 items-end'>
+    <View className='mt-2 items-end'>
       <TouchableOpacity
         onPress={toggleOpen}
       >

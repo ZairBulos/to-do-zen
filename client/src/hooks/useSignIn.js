@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser, logoutUser } from '../redux/authReducer';
 import { useAuthStorage } from './useAuthStorage';
 import authService from '../services/auth';
+import todoService from '../services/todos';
 
 export const useSignIn = () => {
   const dispatch = useDispatch();
@@ -12,13 +13,14 @@ export const useSignIn = () => {
   const loggedIn = useSelector(state => state.auth);
 
   useEffect(() => {
-    initializeUser();
-  }, [dispatch]);
+    onInitialize();
+  }, []);
 
-  const initializeUser = async () => {
+  const onInitialize = async () => {
     const accessToken = await authStorage.getAccessToken();
 
     if (accessToken) {
+      todoService.setToken(accessToken);
       dispatch(loginUser({ accessToken }));
     }
   };
@@ -29,6 +31,7 @@ export const useSignIn = () => {
       const accessToken = user.token;
 
       await authStorage.setAccessToken({ accessToken });
+      todoService.setToken(accessToken);
       dispatch(loginUser({ accessToken }));
     } catch (error) {
       throw error;
@@ -37,6 +40,7 @@ export const useSignIn = () => {
 
   const onSignOut = async () => {
     await authStorage.removeAccessToken();
+    todoService.setToken();
     dispatch(logoutUser());
   };
 
