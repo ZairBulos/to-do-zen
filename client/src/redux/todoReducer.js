@@ -7,6 +7,9 @@ const todoReducer = createSlice({
     set(state, action) {
       return action.payload;
     },
+    append(state, action) {
+      state.push(action.payload);
+    },
     update(state, action) {
       const updatedTodo = action.payload;
       const { id } = updatedTodo;
@@ -25,11 +28,17 @@ const todoReducer = createSlice({
   }
 });
 
-export const { set, update, remove } = todoReducer.actions;
+export const { set, append, update, remove, showIncomplete } = todoReducer.actions;
 
 export const initializeTodos = (todos) => {
   return async (dispatch) => {
     dispatch(set(todos));
+  };
+};
+
+export const createTodo = (todo) => {
+  return async (dispatch) => {
+    dispatch(append(todo));
   };
 };
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import todoService from '../services/todos';
-import { initializeTodos, removeTodo, updateTodo } from '../redux/todoReducer';
+import { createTodo, initializeTodos, removeTodo, updateTodo } from '../redux/todoReducer';
 
 export const useTodos = () => {
   const dispatch = useDispatch();
@@ -17,6 +17,16 @@ export const useTodos = () => {
     try {
       const todos = await todoService.getAll();
       dispatch(initializeTodos(todos));
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const onCreate = async (title) => {
+    try {
+      const todo = { title };
+      const newTodo = await todoService.create(todo);
+      dispatch(createTodo(newTodo));
     } catch (error) {
       throw error;
     }
@@ -44,6 +54,7 @@ export const useTodos = () => {
 
   return {
     todos,
+    onCreate,
     onPatch,
     onRemove
   };

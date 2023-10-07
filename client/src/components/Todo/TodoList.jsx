@@ -7,30 +7,28 @@ import TodoItem from './TodoItem';
 function TodoList() {
   const { todos, onPatch, onRemove } = useTodos();
 
-  const handleComplete = async (todo) => {
-    await onPatch(todo);
-  };
-
-  const handleDelete = async (todo) => {
-    await onRemove(todo);
-  };
-
   return (
     <View>
       <Text className='text-2xl font-black mb-4'>
         Today
       </Text>
-      <FlatList
-        data={todos}
-        renderItem={({ item }) =>
-          <TodoItem 
-            todo={item} 
-            handleComplete={handleComplete}
-            handleDelete={handleDelete} 
-          />
-        }
-        keyExtractor={item => item.id}
-      />
+      {todos.length > 0 ? (
+        <FlatList
+          data={todos}
+          renderItem={({ item }) =>
+            <TodoItem
+              todo={item}
+              handleComplete={onPatch}
+              handleDelete={onRemove}
+            />
+          }
+          keyExtractor={item => item.id}
+        />
+      ) : (
+        <Text>
+          No hay tareas pendientes
+        </Text>
+      )}
     </View>
   );
 }

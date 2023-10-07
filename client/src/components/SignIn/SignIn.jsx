@@ -24,7 +24,7 @@ function SignIn() {
 
       navigate('/');
     } catch (error) {
-      setError(`error ${error.message}`);
+      setError('Usuario o contraseña incorrectos');
     }
   };
 
