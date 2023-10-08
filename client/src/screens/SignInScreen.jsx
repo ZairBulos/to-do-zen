@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { Link } from 'react-router-native';
+
 import SignIn from '../components/SignIn/SignIn';
 
 function SignInScreen() {
@@ -10,6 +12,13 @@ function SignInScreen() {
       </Text>
       <View className='w-72'>
         <SignIn />
+      </View>
+      <View className='p-2'>
+        <Link to='/sign-up'>
+          <Text className='text-center font-semibold text-blue-500 bg-white'>
+            ¿No tienes cuenta? Registrate
+          </Text>
+        </Link>
       </View>
     </View>
   );
