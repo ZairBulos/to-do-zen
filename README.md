@@ -19,27 +19,27 @@ To get started with the ToDo App project, follow the instructions in the respect
 ## Screenshots
 
 <p align="center">
-  <img src="./screenshots/" alt="welcome" />
+  <img src="./screenshots/welcome.png" alt="welcome" height="500px" />
 </p>
 
 <p align="center">
-    <img src="./screenshots/" alt="sign-in" />
+    <img src="./screenshots/sign-in.png" alt="sign-in" height="500px" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/" alt="sing-up"/>
+  <img src="./screenshots/sign-up.png" alt="sing-up" height="500px" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/" alt="home-todos"/>
+  <img src="./screenshots/home-nothing.png" alt="home-nothing" height="500px" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/" alt="home-nothing"/>
+  <img src="./screenshots/home-todos.png" alt="home-todos" height="500px" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/" alt="todo-remove"/>
+  <img src="./screenshots/todo-remove.png" alt="todo-remove" height="500px" />
 </p>
 
 ## License
