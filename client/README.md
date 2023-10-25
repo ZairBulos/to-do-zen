@@ -1,18 +1,20 @@
-# ToDo App Client
+# ToDoZen (CLIENT)
 
-Welcome to the ToDo App Client documentation. This guide will help you get started with setting up and running the client for the ToDo App project.
+Welcome to the **ToDoZen** client documentation. This guide will help you get started with setting up and running the client for the ToDo App project.
 
 ## Getting Started
 
-Before you start using the ToDo App Client, make sure you have completed the server-side setup as mentioned in the [server documentation](../server/).
+Before you start using the client, ensure you have completed the server-side setup as outlined in the [server documentation](/server/README.md).
 
-1. Navigate to the Client Folder
+1. Navigate to the client folder:
 
 ```bash
-cd to-do-app/client
+cd to-do-zen/client
 ```
 
 ## Instalation
+
+To install the necessary dependencies, run the following command:
 
 ```bash
 npx expo install
@@ -34,20 +36,3 @@ Now that you have cloned the repository, installed the necessary dependencies, a
 ```bash
 npx expo start
 ```
-
-## Technologies
-
-<p style="text-align: left;"> 
-  <p> 
-    <img src="https://w7.pngwing.com/pngs/363/962/png-transparent-react-native-hd-logo.png" alt="react-native" width="65" height="65" />
-  </p>
-  <p>
-    <img src="https://cdn.icon-icons.com/icons2/2389/PNG/512/expo_logo_icon_145293.png" alt="expo" width="65" height="65" />
-  </p>
-  <p>
-    <img src="https://github.com/devicons/devicon/blob/master/icons/redux/redux-original.svg" alt="redux" width="65" height="65" />
-  </p>
-  <p>
-    <img src="https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png" alt="tailwind-css" width="65" height="65" />
-  </p>
-</p>

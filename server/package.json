@@ -1,19 +1,23 @@
 {
-  "name": "to-do-app-server",
+  "name": "to-do-zen-backend",
   "version": "1.0.0",
   "description": "ToDoApp Server",
   "main": "index.js",
+  "author": {
+    "name": "Zair Bulos",
+    "email": "buloszair@gmail.com",
+    "url": "https://github.com/ZairBulos"
+  },
+  "license": "MIT",
+  "keywords": [
+    "to-app-app",
+    "task-app"
+  ],
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "to-app-app",
-    "task-app"
-  ],
-  "author": "Bulos <buloszair@gmail.com> (https://github.com/ZairBulos)",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
